@@ -32,8 +32,9 @@ class CoEnsembling(BaseEstimator, ClassifierMixin):
     classifiers_ : list of ClassifierMixin
         Classifier instances
 
-    weights : 
-        DONT USE
+    weights : shape = [n_classifiers], (default=None)
+        Weights matrix, specifying the weight of each classifier in the ensemble. Defaults to
+        uniform weights
 
     max_iter : int, (default=100)
         Maximum number of iterations to perform the self-training loop. If set to 0, the
@@ -49,9 +50,9 @@ class CoEnsembling(BaseEstimator, ClassifierMixin):
         samples will be bootstrapped (i.e., n data points will be sampled with replacement) for each
         classifier independently before the co-ensembling algorithm starts.
 
-    max_bootstrapped_samples_per_iter : int, (default=-1)
-        If at least 0, this number is used as the maximum number of samples to bootstrap in each
-        iteration. For example, if max_bootstrapped_samples_per_iter=10, the 10 samples with the
+    max_pseudolabeled_samples_per_iter : int, (default=-1)
+        If at least 0, this number is used as the maximum number of samples to pseudo-label in each
+        iteration. For example, if max_pseudolabeled_samples_per_iter=10, the 10 samples with the
         highest probability (from `predict_proba`, and at least with at least probability
         `prob_threshold`) will be added to the list of labeled samples
 
